@@ -1,0 +1,24 @@
+variable_name,description,unit,min_val,max_val,nominal_mean,category
+engine_speed_rpm,Engine rotational speed,RPM,400,1200,850,Mechanical
+engine_load_pct,Engine mechanical load percentage,%,10,105,75,Mechanical
+fuel_rail_pressure_bar,High pressure common rail fuel pressure,bar,300,1600,1100,Fuel System
+fuel_flow_rate_kgh,Mass fuel flow rate,kg/h,50,450,220,Fuel System
+scavenge_air_press_bar,Scavenge/charge air pressure,bar,0.8,3.8,2.2,Air/Exhaust
+scavenge_air_temp_c,Scavenge/charge air temperature,°C,25,85,42,Air/Exhaust
+turbocharger_rpm,Turbocharger turbine rotational speed,RPM,8000,28000,18500,Turbocharger
+exhaust_temp_cyl1_c,Cylinder 1 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_cyl2_c,Cylinder 2 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_cyl3_c,Cylinder 3 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_cyl4_c,Cylinder 4 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_cyl5_c,Cylinder 5 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_cyl6_c,Cylinder 6 exhaust gas temperature,°C,250,550,380,Thermal
+exhaust_temp_inlet_c,Exhaust gas temperature at turbine inlet,°C,300,650,440,Thermal
+exhaust_temp_outlet_c,Exhaust gas temperature at turbine outlet,°C,200,480,310,Thermal
+coolant_inlet_temp_c,Cooling water inlet temperature,°C,40,75,55,Cooling
+coolant_outlet_temp_c,Cooling water outlet temperature,°C,55,95,78,Cooling
+coolant_pressure_bar,Cooling water supply pressure,bar,1.5,5.5,3.2,Cooling
+lube_oil_inlet_temp_c,Lubricating oil supply temperature,°C,35,70,48,Lubrication
+lube_oil_outlet_temp_c,Lubricating oil return temperature,°C,50,90,68,Lubrication
+lube_oil_pressure_bar,Main bearing lubricating oil pressure,bar,2.0,6.5,4.5,Lubrication
+crankcase_pressure_mbar,Crankcase internal pressure,mbar,-5,25,3.5,Mechanical
+vibration_amplitude_mms,Engine block RMS vibration amplitude,mm/s,0.5,15.0,2.1,Vibration
