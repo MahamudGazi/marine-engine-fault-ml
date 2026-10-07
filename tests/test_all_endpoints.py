@@ -4,7 +4,14 @@ import json
 BASE_URL = "http://localhost:8000/api"
 
 def test_api():
-    scenarios = ["normal", "turbine", "injector", "scavenge_fire", "cooling", "bearing"]
+    scenarios = [
+        "normal",
+        "air_filter_clogging",
+        "air_cooler_fouling",
+        "injection_valve_nozzle_clogging",
+        "cooling_water_pump_cavitation",
+        "turbine_degradation",
+    ]
     
     print("--- 1. Testing Telemetry Simulator & Predictions ---")
     for sc in scenarios:
@@ -25,7 +32,9 @@ def test_api():
         pred_data = json.loads(pred_res.read().decode())
         
         print(f" -> Diagnosed: {pred_data['fault_name']} (Confidence: {pred_data['confidence_pct']}%, Anomaly: {pred_data['is_anomaly']})")
-        print(f" -> Top SHAP Driver: {pred_data['shap_explanations'][0]['feature']} (Impact: {pred_data['shap_explanations'][0]['shap_value']})")
+        if pred_data["shap_explanations"]:
+            top = pred_data["shap_explanations"][0]
+            print(f" -> Top SHAP Driver: {top['feature']} (Impact: {top['shap_value']})")
 
     # 3. Test Dashboard Stats
     print("\n--- 2. Testing Dashboard Stats ---")

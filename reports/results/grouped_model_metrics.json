@@ -1,0 +1,251 @@
+{
+  "detection": {
+    "accuracy": 0.5322510822510822,
+    "precision": 0.5882806076719482,
+    "recall": 0.5322510822510822,
+    "f1_score": 0.5463229050465491,
+    "roc_auc": 0.5739630980433905,
+    "confusion_matrix": [
+      [
+        4100,
+        3504
+      ],
+      [
+        7301,
+        8195
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.3596175774054908,
+        "recall": 0.5391899000526039,
+        "f1-score": 0.43146540384109444,
+        "support": 7604.0
+      },
+      "1": {
+        "precision": 0.7004872211300112,
+        "recall": 0.5288461538461539,
+        "f1-score": 0.6026843169700312,
+        "support": 15496.0
+      },
+      "accuracy": 0.5322510822510822,
+      "macro avg": {
+        "precision": 0.5300523992677509,
+        "recall": 0.5340180269493788,
+        "f1-score": 0.5170748604055628,
+        "support": 23100.0
+      },
+      "weighted avg": {
+        "precision": 0.5882806076719482,
+        "recall": 0.5322510822510822,
+        "f1-score": 0.5463229050465491,
+        "support": 23100.0
+      }
+    },
+    "holdout_groups": [
+      "AC_Fouling_40_Load.csv",
+      "AC_Fouling_60_Load.csv",
+      "AF_Clogging_60_Load.csv",
+      "Turbine_Degradation_60_Load.csv"
+    ],
+    "train_groups": [
+      "AC_Fouling_75_Load.csv",
+      "AC_Fouling_85_Load.csv",
+      "AF_Clogging_40_Load.csv",
+      "AF_Clogging_75_Load.csv",
+      "AF_Clogging_85_Load.csv",
+      "CW_Pump_Cavitation_60_Load.csv",
+      "CW_Pump_Cavitation_85_Load.csv",
+      "Clogged_Injector_Nozzle1_40_60_85_Load.csv",
+      "Clogged_Injector_Nozzle2_LoadProgram.csv",
+      "Reference_Data.csv",
+      "Turbine_Degradation_40_Load.csv",
+      "Turbine_Degradation_85_Load.csv"
+    ]
+  },
+  "classification": {
+    "accuracy": 0.3389174097090876,
+    "precision": 0.25791412489868665,
+    "recall": 0.3389174097090876,
+    "f1_score": 0.2859392113113227,
+    "roc_auc": 0.7205401100779137,
+    "confusion_matrix": [
+      [
+        2,
+        0,
+        3668,
+        0,
+        0
+      ],
+      [
+        0,
+        7,
+        4703,
+        0,
+        0
+      ],
+      [
+        1559,
+        1774,
+        2809,
+        350,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        4708,
+        0
+      ],
+      [
+        0,
+        0,
+        2625,
+        0,
+        0
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.0012812299807815502,
+        "recall": 0.0005449591280653951,
+        "f1-score": 0.0007646721468170522,
+        "support": 3670.0
+      },
+      "1": {
+        "precision": 0.0039303761931499155,
+        "recall": 0.00148619957537155,
+        "f1-score": 0.002156832537359421,
+        "support": 4710.0
+      },
+      "2": {
+        "precision": 0.2034622627842967,
+        "recall": 0.4326863832409119,
+        "f1-score": 0.27677603704798504,
+        "support": 6492.0
+      },
+      "3": {
+        "precision": 0.9308026888098062,
+        "recall": 0.9997876406880442,
+        "f1-score": 0.9640626599774752,
+        "support": 4709.0
+      },
+      "4": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2625.0
+      },
+      "accuracy": 0.3389174097090876,
+      "macro avg": {
+        "precision": 0.22789531155360687,
+        "recall": 0.2869010365264786,
+        "f1-score": 0.24875204034192736,
+        "support": 22206.0
+      },
+      "weighted avg": {
+        "precision": 0.25791412489868665,
+        "recall": 0.3389174097090876,
+        "f1-score": 0.2859392113113227,
+        "support": 22206.0
+      }
+    },
+    "holdout_groups": [
+      "AC_Fouling_85_Load.csv",
+      "AF_Clogging_85_Load.csv",
+      "CW_Pump_Cavitation_85_Load.csv",
+      "Clogged_Injector_Nozzle1_40_60_85_Load.csv",
+      "Turbine_Degradation_85_Load.csv"
+    ],
+    "train_groups": [
+      "AC_Fouling_40_Load.csv",
+      "AC_Fouling_60_Load.csv",
+      "AC_Fouling_75_Load.csv",
+      "AF_Clogging_40_Load.csv",
+      "AF_Clogging_60_Load.csv",
+      "AF_Clogging_75_Load.csv",
+      "CW_Pump_Cavitation_60_Load.csv",
+      "Clogged_Injector_Nozzle2_LoadProgram.csv",
+      "Turbine_Degradation_40_Load.csv",
+      "Turbine_Degradation_60_Load.csv"
+    ]
+  },
+  "features": [
+    "Engine Speed",
+    "Max. In-Cylinder Press. No.1",
+    "Min. In-Cylinder Press. No.1",
+    "Max. In-Cylinder Press. No.2",
+    "Min. In-Cylinder Press. No.2",
+    "Max. In-Cylinder Press. No.3",
+    "Min. In-Cylinder Press. No.3",
+    "Charge Air Press.",
+    "Water Brake Weight",
+    "Fuel Flow",
+    "No.1 Exh.Gas Temp.",
+    "No.2 Exh.Gas Temp.",
+    "No.3 Exh.Gas Temp.",
+    "Exh.Gas Temp. Turbine In",
+    "Exh.Gas Temp. Turbine Out",
+    "Cooling Water Temp. Engine In",
+    "Cooling Water Temp. Engine Out I",
+    "Cooling Water Temp. Engine Out II",
+    "Cooling Water Temp. Engine Out III",
+    "LO Temp. Engine In",
+    "LO Temp. Engine Out",
+    "LO Cooling Water Temp. In",
+    "LO Cooling Water Temp. Out",
+    "Charge Air IC Air Temp. In",
+    "Charge Air IC Air Temp. Out",
+    "Charge Air IC Cooling Water Temp. In",
+    "Charge Air IC Cooling Water Temp. Out",
+    "Fuel Temp.",
+    "LO Temp. TCH In",
+    "LO Temp. TCH Out",
+    "Fuel Oil Temp. Flow meter In",
+    "Engine room Temp.",
+    "LO Circulating Pump Press.",
+    "Fuel transfer pump Press.",
+    "Fresh Cooling Water Press.",
+    "Sea Cooling Water Press.",
+    "TCH LO pump Press.",
+    "Fuel Injector Cooling Oil Press.",
+    "Engine Cooling water flow",
+    "LO Cooling water flow",
+    "Charge Air IC Cooling water flow",
+    "TCH LO Cooling water flow",
+    "Total Input Energy",
+    "Indicated Work No.1",
+    "Indicated Work No.2",
+    "Indicated Work No.3",
+    "Total Indicated work",
+    "Effective Work No.1",
+    "Effective Work No.2",
+    "Effective Work No.3",
+    "Total Effective Work",
+    "Shaft Torque",
+    "Shaft Power",
+    "Mechanical Loss",
+    "Loss with cooling water",
+    "Loss with LO",
+    "Loss in Charge Air IC",
+    "Loss with TCH LO",
+    "Total Heat Loss in Heat Exchangers",
+    "Exh.Gas Vol. Flow (From Engine Speed)",
+    "Exh. Gas Mass Flow",
+    "Exh.Gas Total Power",
+    "TCH Power",
+    "Exh.Gas Power",
+    "Other Loss",
+    "Mechanical Efficiency",
+    "Indicated Efficiency",
+    "Effective Efficiency"
+  ],
+  "fault_classes": {
+    "0": "Air-filter clogging",
+    "1": "Air-cooler fouling",
+    "2": "Injection-valve nozzle clogging",
+    "3": "Cooling-water pump cavitation",
+    "4": "Turbine degradation"
+  }
+}

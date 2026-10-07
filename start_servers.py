@@ -19,7 +19,7 @@ def main():
     print("[1/2] Starting Django REST Backend on http://localhost:8000 ...")
     backend_proc = subprocess.Popen(
         [python_exe, "manage.py", "runserver", "0.0.0.0:8000"],
-        cwd=str(ROOT_DIR / "backend" / "django_project")
+        cwd=str(ROOT_DIR / "backend")
     )
 
     time.sleep(2)
@@ -28,7 +28,7 @@ def main():
     print("[2/2] Starting React Dashboard on http://localhost:3000 ...")
     frontend_proc = subprocess.Popen(
         ["npm", "run", "dev"],
-        cwd=str(ROOT_DIR / "frontend" / "react-dashboard"),
+        cwd=str(ROOT_DIR / "frontend"),
         shell=True
     )
 

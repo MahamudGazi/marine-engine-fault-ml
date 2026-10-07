@@ -1,136 +1,65 @@
-# 🚢 Marine Engine Fault Detection & Monitoring System (AI + Mechanical Engineering + Full-Stack)
+# Marine Engine Fault Detection
 
-An end-to-end industrial Machine Learning and telemetry analytics system for Marine Engine Fault Detection, Classification, and Explainable AI (SHAP) with a real-time engineering monitoring dashboard.
+A research and demo project for binary anomaly detection and five-class fault diagnosis using marine engine telemetry. The repository includes processed real-world datasets, source-file-aware training, a Django REST API, and a React dashboard.
 
----
+## Data and labels
 
-## 📁 Project Directory Structure
+The processed tables are generated from the CSV files under `data/raw/Marine_Engine_Fault_Data/Marine_Engine_Fault_Data/`.
 
-```plaintext
-marine-engine-fault-ml/
-│
-├── data/
-│   ├── raw/
-│   │   └── Marine_Engine_Fault_Data/        # Original sensor readings & telemetry logs
-│   ├── processed/
-│   │   ├── detection_dataset.parquet        # Cleaned dataset for binary anomaly detection
-│   │   └── classification_dataset.parquet   # Multi-class fault diagnosis dataset
-│   └── metadata/
-│       ├── dataset_index.csv                # Dataset manifest & run conditions
-│       └── variable_dictionary.csv          # Engineering parameters & sensor units
-│
-├── notebooks/
-│   ├── 01_dataset_inspection.ipynb          # Raw dataset sanity checks & validation
-│   ├── 02_eda.ipynb                         # Exploratory Data Analysis & sensor correlations
-│   ├── 03_data_cleaning.ipynb               # Outlier filtering, imputation, smoothing
-│   ├── 04_feature_engineering.ipynb         # Thermodynamic ratios, rolling stats, FFT/vibration
-│   ├── 05_fault_detection.ipynb             # Binary fault detection models (Normal vs Anomaly)
-│   ├── 06_fault_classification.ipynb        # Multi-class fault diagnosis (Turbine, Injector, etc.)
-│   ├── 07_model_comparison.ipynb            # ROC/AUC, F1, latency & benchmarking
-│   └── 08_shap_explainability.ipynb         # SHAP TreeExplainer, waterfall & summary plots
-│
-├── src/
-│   ├── data/
-│   │   ├── loader.py                        # Parquet/CSV batch & stream loader
-│   │   ├── cleaning.py                      # Data validation & cleansing routines
-│   │   └── labeling.py                      # Fault taxonomy mapping & label encoding
-│   │
-│   ├── features/
-│   │   ├── selection.py                     # Mutual info, recursive feature elimination
-│   │   └── engineering.py                   # Domain-specific thermodynamic & mechanical features
-│   │
-│   ├── models/
-│   │   ├── baseline.py                      # Logistic / Decision Tree baselines
-│   │   ├── random_forest.py                 # Random Forest classifier pipeline
-│   │   ├── xgboost_model.py                 # XGBoost tuned model pipeline
-│   │   └── lightgbm_model.py                # LightGBM tuned model pipeline
-│   │
-│   ├── evaluation/
-│   │   ├── metrics.py                       # Precision, Recall, F1, Confusion Matrix
-│   │   ├── splits.py                        # Time-series / Stratified group splits
-│   │   └── plots.py                         # PR curves, ROC curves, calibration plots
-│   │
-│   └── explainability/
-│       └── shap_analysis.py                 # Fast inference SHAP feature contribution extractor
-│
-├── models/
-│   ├── detection/                           # Serialized binary anomaly detection models (.joblib)
-│   └── classification/                      # Serialized multi-class fault classification models (.joblib)
-│
-├── backend/
-│   └── django_project/                      # Django & Django REST Framework Backend
-│       ├── manage.py
-│       ├── config/                          # Django settings, ASGI/WSGI, root URLs
-│       ├── api/                             # DRF routers and general endpoints
-│       ├── predictions/                     # ML inference engine & SHAP explanation services
-│       ├── authentication/                  # Token authentication / user management
-│       ├── dashboard/                       # Telemetry history, stats & metrics endpoints
-│       └── requirements.txt
-│
-├── frontend/
-│   └── react-dashboard/                     # React + Vite Marine Engineering Dashboard
-│       ├── src/
-│       │   ├── components/                  # Gauges, HUD Status, SHAP Bar, Logs
-│       │   ├── services/                    # API client layer
-│       │   └── App.jsx
-│       ├── public/
-│       ├── package.json
-│       └── vite.config.js
-│
-├── reports/
-│   ├── figures/                             # High-res confusion matrices, SHAP summary plots
-│   ├── tables/                              # Markdown / LaTeX metric comparison tables
-│   └── results/                             # Model benchmark JSON logs
-│
-├── tests/                                   # Unit & integration tests for ML & APIs
-├── requirements.txt                         # Root ML & Data Science dependencies
-├── README.md                                # Project documentation
-└── .gitignore                               # Git ignore rules
-```
+- Detection: `anomaly_target` identifies healthy (`0`) versus anomalous (`1`) records.
+- Classification: anomalous records are labeled as air-filter clogging, air-cooler fouling, injection-valve nozzle clogging, cooling-water pump cavitation, or turbine degradation.
+- `source_file` is retained as the experiment ID. Training holds out complete source files so adjacent readings from one experiment cannot appear in both train and evaluation data.
+- Model inputs use the dataset's numeric sensor columns. Time, targets, labels, source metadata, and the two explicitly excluded columns are not model inputs.
 
----
+The dashboard's scenario buttons use representative training records selected because the fitted models recognize the intended scenario. These profiles exercise the API; they are not live vessel telemetry or independent measured fault sequences.
 
-## 🛠️ System Architecture
+## Setup
 
-```
-[ Sensor Telemetry / User Input ]
-             ↓
- [ React Engineering Dashboard ]
-             ↓ (REST API)
-    [ Django REST Backend ]
-       ├── Auth & History (DB)
-       ├── ML Inference Engine (LightGBM / XGBoost)
-       └── Explainable AI (SHAP TreeExplainer)
-             ↓
-[ JSON Response: Status + Fault + Confidence + SHAP Contributions ]
-```
+From the repository root, create and activate a virtual environment, then install the ML/backend dependencies:
 
----
-
-## 🚀 Getting Started
-
-### 1. ML Environment Setup
-```bash
+```powershell
 python -m venv venv
-# On Windows:
-.\venv\Scripts\activate
-# On Linux/macOS:
-source venv/bin/activate
-
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
-### 2. Backend Setup
-```bash
-cd backend/django_project
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+Build the processed datasets (if they are absent) and train the models:
+
+```powershell
+python -m src.data.loader
+python train_models.py
 ```
 
-### 3. Frontend Setup
-```bash
-cd frontend/react-dashboard
+Training writes model artifacts to `models/detection/` and `models/classification/`, and grouped holdout metrics to `reports/results/grouped_model_metrics.json`.
+
+Start the backend in one terminal:
+
+```powershell
+cd backend
+..\venv\Scripts\python.exe manage.py migrate
+..\venv\Scripts\python.exe manage.py runserver
+```
+
+Start the dashboard in another terminal:
+
+```powershell
+cd frontend
 npm install
 npm run dev
 ```
+
+Vite proxies `/api` to `http://localhost:8000`. The prediction endpoint expects every numeric feature required by the trained model; use `/api/telemetry/simulate/?scenario=normal` or one of the five fault scenario IDs to get a compatible example payload.
+
+## Main folders
+
+- `src/data/`: raw data discovery, labeling, and processed dataset construction.
+- `train_models.py`: source-file-disjoint model training and artifact export.
+- `backend/`: Django API, prediction history, and scenario profile endpoint.
+- `frontend/`: React engineering dashboard.
+- `models/`: trained detector and classifier artifacts.
+- `reports/results/`: grouped holdout metrics.
+
+## Limitations
+
+This is a research/demo system. Grouped holdout scores are substantially lower than random-row scores can be, because entire operating runs are held out; check `reports/results/grouped_model_metrics.json` before interpreting a model. Scenario profiles are training records and should not be treated as independent operational examples. Validate the models on independent vessel data and review the Django deployment settings before exposing the service publicly.
